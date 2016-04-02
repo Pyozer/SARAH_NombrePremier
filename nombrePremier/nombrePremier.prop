@@ -1,0 +1,9 @@
+{
+	"modules" : { 
+		"nombrePremier"  : {
+			"description": "Jarvis nous dit si un nombre est premier ou pas",
+			"version": "1.0",
+			"auteur": "Jean-Charles Moussé"
+		}
+	}
+}

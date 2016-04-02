@@ -1,0 +1,27 @@
+<grammar version="1.0" xml:lang="fr-FR" mode="voice" root="rulenombrePremier" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+	<rule id="rulenombrePremier" scope="public">
+		<example>Jarvis est-ce que 1999 est un nombre premier ?</example>
+		<tag>out.action=new Object(); </tag>
+
+		<item>Jarvis</item>
+    
+		<one-of>
+			<item>tu peux me dire si</item>
+			<item>dit moi si</item>
+			<item>dit moi, est ce que</item>
+			<item>est ce que</item>
+			<item>est-ce que</item>
+			<item>le nombre</item>
+			<item>est ce que le nombre</item>
+		</one-of>
+
+		<ruleref special="GARBAGE" />
+
+		<one-of>
+			<item>est premier</item>
+			<item>est un nombre premier</item>
+		</one-of>
+		
+		<tag>out.action._attributes.uri="http://127.0.0.1:8080/sarah/nombrePremier";</tag>
+	</rule>
+</grammar>
