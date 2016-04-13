@@ -48,8 +48,8 @@ function checkScribe(event, action, callback) {
 			decodeScribe(SARAH.context.scribe.lastPartial, callback);
 		} else {
 			SARAH.context.scribe.activePlugin('Aucun (NombrePremier)');
-			ScribeSpeak("Désolé je n'ai pas compris. Merci de réessayer.", true);
-			return callback();
+			//ScribeSpeak("Désolé je n'ai pas compris. Merci de réessayer.", true);
+			return callback({ 'tts': "Désolé je n'ai pas compris. Merci de réessayer." });
 		}
 		
 	} else {
@@ -65,8 +65,8 @@ function decodeScribe(search, callback) {
 	var match = search.match(rgxp);
 	if (!match || match.length <= 1){
 		SARAH.context.scribe.activePlugin('Aucun (GoogleInfo)');
-		ScribeSpeak("Désolé je n'ai pas compris.", true);
-		return callback();
+		//ScribeSpeak("Désolé je n'ai pas compris.", true);
+		return callback({ 'tts': "Désolé je n'ai pas compris." });
 	}
 
 	nombre = match[2];
@@ -77,8 +77,8 @@ function isPrimeNumber(nbr, callback){
 	var nbr = parseFloat(nbr);
 
 	if(Number.isNaN(nbr) == true) {
-		ScribeSpeak("Désolé, j'ai compris autre chose qu'un chiffre");
-		callback();
+		//ScribeSpeak("Désolé, j'ai compris autre chose qu'un chiffre");
+		callback({ 'tts': "Désolé, j'ai compris autre chose qu'un chiffre" });
 		return;
 	}
 
@@ -95,11 +95,11 @@ function isPrimeNumber(nbr, callback){
 		console.log('[ NombrePremier ] Vérifié via la sauvegarde');
 		var prime = file_content[nbr];
 		if(prime == true) {
-	    	ScribeSpeak("oui le nombre " + nbr + " est premier");
+	    	var answer = "oui le nombre " + nbr + " est premier";
 	    } else {
-	    	ScribeSpeak("Non, " + nbr + " n'est pas un nombre premier");
+	    	var answer = "Non, " + nbr + " n'est pas un nombre premier";
 	    }
-		callback();
+		callback({ 'tts': answer });
 		return;
 
 	} else {
@@ -127,9 +127,9 @@ function isPrimeNumber(nbr, callback){
 	    }
 
 	    if(prime == true) {
-	    	ScribeSpeak("oui le nombre " + nbr + " est premier");
+	    	var answer = "oui le nombre " + nbr + " est premier";
 	    } else {
-	    	ScribeSpeak("Non, " + nbr + " n'est pas un nombre premier");
+	    	var answer = "Non, " + nbr + " n'est pas un nombre premier";
 	    }
 	    console.log("[ NombrePremier ] Vérifié via l'algorithme");
 	    // On stock le résultat pour une éventuel prochaine fois
@@ -139,7 +139,7 @@ function isPrimeNumber(nbr, callback){
 			console.log("[ NombrePremier ] Informations enregistrés");
 		});
 
-	    callback();
+	    callback({ 'tts': answer });
 	    return;
 	}
 }
